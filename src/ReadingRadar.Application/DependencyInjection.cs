@@ -1,5 +1,7 @@
 using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using ReadingRadar.Application.Common.Behaviors;
 
 namespace ReadingRadar.Application;
 
@@ -9,6 +11,8 @@ public static class DependencyInjection
     {
         services.AddMediatR(c =>
             c.RegisterServicesFromAssemblyContaining<IApplicationMarker>());
+
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         services.AddValidatorsFromAssemblyContaining<IApplicationMarker>();
 
