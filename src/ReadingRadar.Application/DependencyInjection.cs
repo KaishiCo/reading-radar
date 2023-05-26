@@ -1,3 +1,4 @@
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ReadingRadar.Application;
@@ -8,6 +9,8 @@ public static class DependencyInjection
     {
         services.AddMediatR(c =>
             c.RegisterServicesFromAssemblyContaining<IApplicationMarker>());
+
+        services.AddValidatorsFromAssemblyContaining<IApplicationMarker>();
 
         return services;
     }

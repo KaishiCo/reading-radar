@@ -1,4 +1,5 @@
 using MediatR;
+using ReadingRadar.Api.Mapping;
 using ReadingRadar.Application.Features.Books.Commands;
 using ReadingRadar.Application.Features.Books.Queries;
 using ReadingRadar.Contracts.Books;
@@ -30,14 +31,12 @@ public static class BookEndpoints
 
         return result.Match(
             book => Results.Ok(book),
-            error => Results.BadRequest(error)
-        );
+            validationErr => validationErr.AsValidationProblemResult());
     }
 
     private static async Task<IResult> ListBooks(ISender sender)
     {
         var items = await sender.Send(new ListBooksQuery());
-
         return Results.Ok(items);
     }
 }
