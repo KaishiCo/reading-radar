@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ED53E531-58A4-4A88-BCA7-2FFA300C9F8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingRadar.Api", "src\ReadingRadar.Api\ReadingRadar.Api.csproj", "{4EEB9AB4-9181-40C3-AFE1-7F2B36A0134E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingRadar.Application", "src\ReadingRadar.Application\ReadingRadar.Application.csproj", "{76972FDE-D766-4F1B-8234-D10B9477EC57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingRadar.Contracts", "src\ReadingRadar.Contracts\ReadingRadar.Contracts.csproj", "{F6716FF5-7991-42BC-8186-695DBF373BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingRadar.Domain", "src\ReadingRadar.Domain\ReadingRadar.Domain.csproj", "{8C8C7692-3495-46D5-BCDF-63A57D4ACE5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingRadar.Infra", "src\ReadingRadar.Infra\ReadingRadar.Infra.csproj", "{AE137FCA-AA47-473F-9286-BF7C9A1BC5B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EEB9AB4-9181-40C3-AFE1-7F2B36A0134E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EEB9AB4-9181-40C3-AFE1-7F2B36A0134E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EEB9AB4-9181-40C3-AFE1-7F2B36A0134E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EEB9AB4-9181-40C3-AFE1-7F2B36A0134E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76972FDE-D766-4F1B-8234-D10B9477EC57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76972FDE-D766-4F1B-8234-D10B9477EC57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76972FDE-D766-4F1B-8234-D10B9477EC57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76972FDE-D766-4F1B-8234-D10B9477EC57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6716FF5-7991-42BC-8186-695DBF373BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6716FF5-7991-42BC-8186-695DBF373BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6716FF5-7991-42BC-8186-695DBF373BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6716FF5-7991-42BC-8186-695DBF373BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C8C7692-3495-46D5-BCDF-63A57D4ACE5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C8C7692-3495-46D5-BCDF-63A57D4ACE5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C8C7692-3495-46D5-BCDF-63A57D4ACE5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C8C7692-3495-46D5-BCDF-63A57D4ACE5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE137FCA-AA47-473F-9286-BF7C9A1BC5B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE137FCA-AA47-473F-9286-BF7C9A1BC5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE137FCA-AA47-473F-9286-BF7C9A1BC5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE137FCA-AA47-473F-9286-BF7C9A1BC5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4EEB9AB4-9181-40C3-AFE1-7F2B36A0134E} = {ED53E531-58A4-4A88-BCA7-2FFA300C9F8D}
+		{76972FDE-D766-4F1B-8234-D10B9477EC57} = {ED53E531-58A4-4A88-BCA7-2FFA300C9F8D}
+		{F6716FF5-7991-42BC-8186-695DBF373BB9} = {ED53E531-58A4-4A88-BCA7-2FFA300C9F8D}
+		{8C8C7692-3495-46D5-BCDF-63A57D4ACE5A} = {ED53E531-58A4-4A88-BCA7-2FFA300C9F8D}
+		{AE137FCA-AA47-473F-9286-BF7C9A1BC5B9} = {ED53E531-58A4-4A88-BCA7-2FFA300C9F8D}
+	EndGlobalSection
+EndGlobal
