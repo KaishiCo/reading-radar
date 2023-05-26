@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ReadingRadar.Application.Interfaces.Persistence.Repositories;
+using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 using ReadingRadar.Infra.Persistence.Repositories;
 
 namespace ReadingRadar.Infra;

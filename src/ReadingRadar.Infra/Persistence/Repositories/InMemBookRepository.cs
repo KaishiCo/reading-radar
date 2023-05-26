@@ -1,4 +1,4 @@
-using ReadingRadar.Application.Interfaces.Persistence.Repositories;
+using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Infra.Persistence.Repositories;

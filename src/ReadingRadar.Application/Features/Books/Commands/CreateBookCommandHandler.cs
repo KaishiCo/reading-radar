@@ -1,8 +1,8 @@
 using FluentValidation;
 using MediatR;
 using OneOf;
+using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 using ReadingRadar.Application.Errors;
-using ReadingRadar.Application.Interfaces.Persistence.Repositories;
 using ReadingRadar.Domain.Enums;
 using ReadingRadar.Domain.Models;
 
@@ -21,14 +21,6 @@ public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, OneOf
 
     public async Task<OneOf<Book, ValidationError>> Handle(CreateBookCommand request, CancellationToken cancellationToken)
     {
-        var result = await _validator.ValidateAsync(request, cancellationToken);
-
-        if (!result.IsValid)
-        {
-            return new ValidationError(
-                result.Errors.ConvertAll(e => (e.PropertyName, e.ErrorMessage)));
-        }
-
         var book = new Book
         {
             Id = Guid.NewGuid(),
