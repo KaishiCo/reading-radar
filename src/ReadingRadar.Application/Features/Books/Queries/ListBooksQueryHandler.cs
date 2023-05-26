@@ -1,5 +1,5 @@
 using MediatR;
-using ReadingRadar.Application.Interfaces.Persistence.Repositories;
+using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.Books.Queries;

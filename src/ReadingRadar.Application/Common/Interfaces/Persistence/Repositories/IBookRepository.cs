@@ -1,6 +1,6 @@
 using ReadingRadar.Domain.Models;
 
-namespace ReadingRadar.Application.Interfaces.Persistence.Repositories;
+namespace ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 
 public interface IBookRepository
 {
