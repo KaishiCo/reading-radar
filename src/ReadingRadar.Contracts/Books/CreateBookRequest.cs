@@ -5,7 +5,7 @@ public record CreateBookRequest(
     string Author,
     int MediaType,
     string? Description,
-    int? PageCount,
+    int? Pages,
     string? ImageLink,
     DateTime? PublishDate,
     Guid? SeriesId);
