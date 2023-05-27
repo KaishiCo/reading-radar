@@ -1,5 +1,6 @@
 using ReadingRadar.Api.Endpoints;
 using ReadingRadar.Application;
+using ReadingRadar.Application.Common.Interfaces.Persistence;
 using ReadingRadar.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,5 +13,8 @@ var app = builder.Build();
 
 app.MapGet("/", () => "ReadingRadar home...");
 app.MapBookEndpoints();
+
+var dbInitializer = app.Services.GetRequiredService<IDbInitializer>();
+await dbInitializer.InitializeAsync();
 
 app.Run();
