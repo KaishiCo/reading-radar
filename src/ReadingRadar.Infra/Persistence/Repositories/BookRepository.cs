@@ -15,8 +15,8 @@ public class BookRepository : IBookRepository
     public async Task<bool> CreateAsync(Book book)
     {
         const string sql = """
-            INSERT INTO book(Id, Title, Author, MediaType, Description, Pages, ImageLink, PublishDate, SeriesId)
-            VALUES (@Id, @Title, @Author, @MediaType, @Description, @Pages, @ImageLink, @PublishDate, @SeriesId)    
+            INSERT INTO book(Id, Title, Author, MediaType, Description, Pages, Chapters, ImageLink, PublishDate, SeriesId)
+            VALUES (@Id, @Title, @Author, @MediaType, @Description, @Pages, @Chapters, @ImageLink, @PublishDate, @SeriesId)    
         """;
 
         using var connection = await _connectionFactory.CreateConnectionAsync();

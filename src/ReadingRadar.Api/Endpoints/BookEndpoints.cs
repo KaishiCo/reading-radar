@@ -22,6 +22,7 @@ public static class BookEndpoints
             request.MediaType,
             request.Description,
             request.Pages,
+            request.Chapters,
             request.ImageLink,
             request.PublishDate,
             request.SeriesId

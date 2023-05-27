@@ -22,6 +22,7 @@ public class DbInitializer : IDbInitializer
                 MediaType int NOT NULL,
                 Description TEXT,
                 Pages INT,
+                Chapters INT,
                 ImageLink VARCHAR(255),
                 PublishDate DATE,
                 SeriesId UUID)

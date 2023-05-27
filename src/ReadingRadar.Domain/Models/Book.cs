@@ -10,6 +10,7 @@ public class Book
     public required MediaType MediaType { get; set; }
     public string? Description { get; set; }
     public int? Pages { get; set; }
+    public int? Chapters { get; set; }
     public string? ImageLink { get; set; }
     public DateTime? PublishDate { get; set; }
     public Guid? SeriesId { get; set; }
