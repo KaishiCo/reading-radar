@@ -26,6 +26,7 @@ public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, OneOf
             MediaType = (MediaType)request.MediaType,
             Description = request.Description,
             Pages = request.Pages,
+            Chapters = request.Chapters,
             ImageLink = request.ImageLink,
             PublishDate = request.PublishDate,
             SeriesId = request.SeriesId

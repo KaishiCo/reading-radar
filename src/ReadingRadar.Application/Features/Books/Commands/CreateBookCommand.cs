@@ -11,6 +11,7 @@ public record CreateBookCommand(
     int MediaType,
     string? Description,
     int? Pages,
+    int? Chapters,
     string? ImageLink,
     DateTime? PublishDate,
     Guid? SeriesId
