@@ -21,7 +21,7 @@ public class CreateBookCommandValidator : AbstractValidator<CreateBookCommand>
 
         RuleFor(x => x.MediaType)
             .Must(x => Enum.IsDefined(typeof(MediaType), x))
-            .WithMessage($"Media type must be a valid media type: {GetMediaTypes()}");
+            .WithMessage($"Must be a valid media type: {GetMediaTypes()}");
     }
 
     private static string GetMediaTypes()
