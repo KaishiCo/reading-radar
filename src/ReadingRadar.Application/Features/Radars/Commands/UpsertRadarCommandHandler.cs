@@ -2,28 +2,29 @@ using MediatR;
 using OneOf;
 using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 using ReadingRadar.Application.Errors;
+using ReadingRadar.Application.Features.Radars.Commands;
 using ReadingRadar.Domain.Enums;
 using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.BookStatuses.Commands;
 
-public class UpsertBookStatusCommandHandler : IRequestHandler<UpsertBookStatusCommand, OneOf<BookStatus, IError>>
+public class UpsertRadarCommandHandler : IRequestHandler<UpsertRadarCommand, OneOf<Radar, IError>>
 {
-    private readonly IBookStatusRepository _bookStatusRepo;
+    private readonly IRadarRepository _radarRepo;
     private readonly IBookRepository _bookRepo;
 
-    public UpsertBookStatusCommandHandler(IBookStatusRepository bookStatusRepo, IBookRepository bookRepo)
+    public UpsertRadarCommandHandler(IRadarRepository radarRepo, IBookRepository bookRepo)
     {
-        _bookStatusRepo = bookStatusRepo;
+        _radarRepo = radarRepo;
         _bookRepo = bookRepo;
     }
 
-    public async Task<OneOf<BookStatus, IError>> Handle(UpsertBookStatusCommand request, CancellationToken cancellationToken)
+    public async Task<OneOf<Radar, IError>> Handle(UpsertRadarCommand request, CancellationToken cancellationToken)
     {
         if (!await _bookRepo.ExistsAsync(request.BookId))
             return new NotFoundError(nameof(Book), request.BookId);
 
-        var bookStatus = new BookStatus
+        var radar = new Radar
         {
             Id = Guid.NewGuid(),
             Status = (Status)request.Status,
@@ -32,7 +33,7 @@ public class UpsertBookStatusCommandHandler : IRequestHandler<UpsertBookStatusCo
             ChaptersCompleted = request.ChaptersCompleted
         };
 
-        await _bookStatusRepo.UpsertAsync(bookStatus);
-        return bookStatus;
+        await _radarRepo.UpsertAsync(radar);
+        return radar;
     }
 }

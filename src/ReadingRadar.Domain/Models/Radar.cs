@@ -2,7 +2,7 @@ using ReadingRadar.Domain.Enums;
 
 namespace ReadingRadar.Domain.Models;
 
-public class BookStatus
+public class Radar
 {
     public required Guid Id { get; init; } = Guid.NewGuid();
     public required Status Status { get; set; }

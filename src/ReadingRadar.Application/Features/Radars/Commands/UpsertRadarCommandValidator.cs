@@ -1,11 +1,12 @@
 using FluentValidation;
+using ReadingRadar.Application.Features.BookStatuses.Commands;
 using ReadingRadar.Domain.Enums;
 
-namespace ReadingRadar.Application.Features.BookStatuses.Commands;
+namespace ReadingRadar.Application.Features.Radars.Commands;
 
-public class UpsertBookStatusCommandValidator : AbstractValidator<UpsertBookStatusCommand>
+public class UpsertRadarCommandValidator : AbstractValidator<UpsertRadarCommand>
 {
-    public UpsertBookStatusCommandValidator()
+    public UpsertRadarCommandValidator()
     {
         RuleFor(x => x.BookId).NotEmpty();
 
