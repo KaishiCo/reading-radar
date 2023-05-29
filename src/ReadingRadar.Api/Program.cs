@@ -13,6 +13,7 @@ var app = builder.Build();
 
 app.MapGet("/", () => "ReadingRadar home...");
 app.MapBookEndpoints();
+app.MapBookStatusesEndpoints();
 
 var dbInitializer = app.Services.GetRequiredService<IDbInitializer>();
 await dbInitializer.InitializeAsync();
