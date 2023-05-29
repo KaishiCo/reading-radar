@@ -7,7 +7,7 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.Books.Commands;
 
-public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, OneOf<Book, ValidationError>>
+public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, OneOf<Book, IError>>
 {
     private readonly IBookRepository _bookRepository;
 
@@ -16,7 +16,7 @@ public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, OneOf
         _bookRepository = bookRepository;
     }
 
-    public async Task<OneOf<Book, ValidationError>> Handle(CreateBookCommand request, CancellationToken cancellationToken)
+    public async Task<OneOf<Book, IError>> Handle(CreateBookCommand request, CancellationToken cancellationToken)
     {
         var book = new Book
         {

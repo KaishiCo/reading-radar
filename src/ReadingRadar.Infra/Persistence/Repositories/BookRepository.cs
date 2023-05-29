@@ -25,6 +25,17 @@ public class BookRepository : IBookRepository
         return result > 0;
     }
 
+    public async Task<bool> ExistsAsync(Guid bookId)
+    {
+        using var connection = await _connectionFactory.CreateConnectionAsync();
+
+        var result = await connection.ExecuteScalarAsync<int>("""
+            SELECT EXISTS (SELECT 1 FROM Book WHERE Id = @Id)
+        """, new { Id = bookId });
+
+        return result == 1;
+    }
+
     public async Task<IEnumerable<Book>> GetAllAsync()
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();

@@ -15,4 +15,4 @@ public record CreateBookCommand(
     string? ImageLink,
     DateTime? PublishDate,
     Guid? SeriesId
-) : IRequest<OneOf<Book, ValidationError>>;
+) : IRequest<OneOf<Book, IError>>;

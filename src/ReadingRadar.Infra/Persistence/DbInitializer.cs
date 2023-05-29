@@ -27,5 +27,15 @@ public class DbInitializer : IDbInitializer
                 PublishDate DATE,
                 SeriesId UUID)
         """);
+
+        await connection.ExecuteAsync("""
+            CREATE TABLE IF NOT EXISTS BookStatus(
+                Id UUID PRIMARY KEY,
+                Status int NOT NULL,
+                ChaptersCompleted INT NOT NULL,
+                BookId UUID NOT NULL,
+                CompletionDate DATE,
+                FOREIGN KEY (BookId) REFERENCES Book(Id))
+        """);
     }
 }

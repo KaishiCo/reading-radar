@@ -13,6 +13,7 @@ public static class DependencyInjection
     {
         services.AddSingleton<IDbInitializer, DbInitializer>()
             .AddSingleton<IBookRepository, BookRepository>()
+            .AddSingleton<IBookStatusRepository, BookStatusRepository>()
             .AddSingleton<IDbConnectionFactory, PgsqlConnectionFactory>(_ =>
                 new PgsqlConnectionFactory(config["Database:ConnectionString"]!));
 

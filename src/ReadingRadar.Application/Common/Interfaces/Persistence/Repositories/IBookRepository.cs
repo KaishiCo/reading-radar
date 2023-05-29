@@ -6,4 +6,5 @@ public interface IBookRepository
 {
     Task<bool> CreateAsync(Book book);
     Task<IEnumerable<Book>> GetAllAsync();
+    Task<bool> ExistsAsync(Guid bookId);
 }
