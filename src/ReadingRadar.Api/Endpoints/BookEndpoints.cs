@@ -32,7 +32,7 @@ public static class BookEndpoints
 
         return result.Match(
             book => Results.Ok(book),
-            validationErr => validationErr.AsValidationProblemResult());
+            error => error.AsHttpResult());
     }
 
     private static async Task<IResult> ListBooks(ISender sender)
