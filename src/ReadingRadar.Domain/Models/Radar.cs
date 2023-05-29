@@ -9,4 +9,7 @@ public class Radar
     public int ChaptersCompleted { get; set; }
     public DateTime? CompletionDate { get; set; }
     public required Guid BookId { get; set; }
+
+    // Navigation properties
+    public Book Book { get; set; } = null!;
 }
