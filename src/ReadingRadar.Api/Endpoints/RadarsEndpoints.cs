@@ -11,7 +11,7 @@ public static class RadarsEndpoints
     public static void MapBookStatusesEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapGet("/api/radars", ListRadars);
-        app.MapPut("/api/books/{bookId:guid}/radar", UpsertRadar);
+        app.MapPut("/api/radars/{bookId:guid}", UpsertRadar);
     }
 
     private static async Task<IResult> ListRadars(ISender sender)
@@ -31,7 +31,7 @@ public static class RadarsEndpoints
         var result = await sender.Send(command);
 
         return result.Match(
-            radar => Results.Ok(radar),
+            radar => Results.Ok(radar.AsResponse()),
             error => error.AsHttpResult());
     }
 }
