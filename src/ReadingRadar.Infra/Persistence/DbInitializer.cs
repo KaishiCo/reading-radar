@@ -29,7 +29,7 @@ public class DbInitializer : IDbInitializer
         """);
 
         await connection.ExecuteAsync("""
-            CREATE TABLE IF NOT EXISTS BookStatus(
+            CREATE TABLE IF NOT EXISTS Radar(
                 Id UUID PRIMARY KEY,
                 Status int NOT NULL,
                 ChaptersCompleted INT NOT NULL,

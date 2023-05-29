@@ -3,11 +3,11 @@ using OneOf;
 using ReadingRadar.Application.Errors;
 using ReadingRadar.Domain.Models;
 
-namespace ReadingRadar.Application.Features.BookStatuses.Commands;
+namespace ReadingRadar.Application.Features.Radars.Commands;
 
-public record UpsertBookStatusCommand(
+public record UpsertRadarCommand(
     Guid BookId,
     int Status,
     int ChaptersCompleted,
     DateTime? CompletionDate
-) : IRequest<OneOf<BookStatus, IError>>;
+) : IRequest<OneOf<Radar, IError>>;

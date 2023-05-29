@@ -5,56 +5,56 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Infra.Persistence.Repositories;
 
-public class BookStatusRepository : IBookStatusRepository
+public class RadarRepository : IRadarRepository
 {
     private readonly IDbConnectionFactory _connectionFactory;
 
-    public BookStatusRepository(IDbConnectionFactory connectionFactory) =>
+    public RadarRepository(IDbConnectionFactory connectionFactory) =>
         _connectionFactory = connectionFactory;
 
-    public async Task<bool> CreateAsync(BookStatus bookStatus)
+    public async Task<bool> CreateAsync(Radar radar)
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
 
         var result = await connection.ExecuteAsync("""
-            INSERT INTO BookStatus(Id, Status, ChaptersCompleted, BookId, CompletionDate)
+            INSERT INTO Radar(Id, Status, ChaptersCompleted, BookId, CompletionDate)
             VALUES(@Id, @Status, @ChaptersCompleted, @BookId, @CompletionDate)
-        """, bookStatus);
+        """, radar);
 
         return result > 0;
     }
 
-    public async Task<bool> UpsertAsync(BookStatus bookStatus)
+    public async Task<bool> UpsertAsync(Radar radar)
     {
-        if (!await ExistsAsync(bookStatus.BookId))
-            return await CreateAsync(bookStatus);
+        if (!await ExistsAsync(radar.BookId))
+            return await CreateAsync(radar);
 
         using var connection = await _connectionFactory.CreateConnectionAsync();
 
         var result = await connection.ExecuteAsync("""
-            UPDATE BookStatus SET
+            UPDATE Radar SET
                 Status = @Status,
                 ChaptersCompleted = @ChaptersCompleted,
                 CompletionDate = @CompletionDate
             WHERE BookId = @BookId
-        """, bookStatus);
+        """, radar);
 
         return result > 0;
     }
 
-    public async Task<IEnumerable<BookStatus>> GetAllAsync()
+    public async Task<IEnumerable<Radar>> GetAllAsync()
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
 
-        return await connection.QueryAsync<BookStatus>("SELECT * FROM BookStatus");
+        return await connection.QueryAsync<Radar>("SELECT * FROM Radar");
     }
 
-    public async Task<BookStatus?> GetByBookIdAsync(Guid bookId)
+    public async Task<Radar?> GetByBookIdAsync(Guid bookId)
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
 
-        return await connection.QueryFirstOrDefaultAsync<BookStatus>("""
-            SELECT * FROM BookStatus WHERE BookId = @BookId
+        return await connection.QueryFirstOrDefaultAsync<Radar>("""
+            SELECT * FROM Radar WHERE BookId = @BookId
         """, new { BookId = bookId });
     }
 
@@ -63,7 +63,7 @@ public class BookStatusRepository : IBookStatusRepository
         using var connection = await _connectionFactory.CreateConnectionAsync();
 
         var result = await connection.ExecuteScalarAsync<int>("""
-            SELECT EXISTS (SELECT 1 FROM BookStatus WHERE BookId = @BookId)
+            SELECT EXISTS (SELECT 1 FROM Radar WHERE BookId = @BookId)
         """, new { BookId = bookId });
 
         return result > 0;
