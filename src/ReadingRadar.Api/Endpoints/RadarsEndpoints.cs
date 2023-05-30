@@ -17,7 +17,7 @@ public static class RadarsEndpoints
     private static async Task<IResult> ListRadars(ISender sender)
     {
         var items = await sender.Send(new ListRadarsQuery());
-        return Results.Ok(items);
+        return Results.Ok(items.AsRadarsResponse());
     }
 
     private static async Task<IResult> UpsertRadar(Guid bookId, UpsertRadarRequest request, ISender sender)
