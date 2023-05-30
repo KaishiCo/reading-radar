@@ -9,4 +9,5 @@ public interface IRadarRepository
     Task<IEnumerable<Radar>> GetAllAsync();
     Task<Radar?> GetByBookIdAsync(Guid bookId);
     Task<bool> ExistsAsync(Guid bookId);
+    Task<bool> DeleteByBookIdAsync(Guid bookId);
 }
