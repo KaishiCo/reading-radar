@@ -5,7 +5,7 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Infra.Persistence.Repositories;
 
-public class BookRepository : IBookRepository
+internal sealed class BookRepository : IBookRepository
 {
     private readonly IDbConnectionFactory _connectionFactory;
 

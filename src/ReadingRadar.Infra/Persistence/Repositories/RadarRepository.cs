@@ -5,7 +5,7 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Infra.Persistence.Repositories;
 
-public class RadarRepository : IRadarRepository
+internal sealed class RadarRepository : IRadarRepository
 {
     private readonly IDbConnectionFactory _connectionFactory;
 

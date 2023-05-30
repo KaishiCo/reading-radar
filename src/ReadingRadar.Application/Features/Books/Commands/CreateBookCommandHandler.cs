@@ -5,7 +5,7 @@ using ReadingRadar.Application.Errors;
 using ReadingRadar.Domain.Enums;
 using ReadingRadar.Domain.Models;
 
-namespace ReadingRadar.Application.Features.Books.Commands;
+namespace ReadingRadar.Application.Features.Commands;
 
 public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, OneOf<Book, IError>>
 {

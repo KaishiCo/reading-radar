@@ -1,7 +1,7 @@
 using MediatR;
 using ReadingRadar.Api.Mapping;
-using ReadingRadar.Application.Features.Books.Commands;
-using ReadingRadar.Application.Features.Books.Queries;
+using ReadingRadar.Application.Features.Commands;
+using ReadingRadar.Application.Features.Queries;
 using ReadingRadar.Contracts.Books;
 
 namespace ReadingRadar.Api.Endpoints;
