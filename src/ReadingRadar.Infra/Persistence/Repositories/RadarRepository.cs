@@ -46,7 +46,16 @@ public class RadarRepository : IRadarRepository
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
 
-        return await connection.QueryAsync<Radar>("SELECT * FROM Radar");
+        const string query = @"
+        SELECT r.*, b.*
+        FROM Radar r
+        JOIN Book b ON r.BookId = b.Id";
+
+        return await connection.QueryAsync<Radar, Book, Radar>(query, (radar, book) =>
+        {
+            radar.Book = book;
+            return radar;
+        });
     }
 
     public async Task<Radar?> GetByBookIdAsync(Guid bookId)
