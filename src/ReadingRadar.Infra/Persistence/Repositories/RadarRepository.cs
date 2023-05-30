@@ -77,4 +77,15 @@ public class RadarRepository : IRadarRepository
 
         return result > 0;
     }
+
+    public async Task<bool> DeleteByBookIdAsync(Guid bookId)
+    {
+        using var connection = await _connectionFactory.CreateConnectionAsync();
+
+        var result = await connection.ExecuteAsync("""
+            DELETE FROM Radar WHERE BookId = @BookId
+        """, new { BookId = bookId });
+
+        return result > 0;
+    }
 }

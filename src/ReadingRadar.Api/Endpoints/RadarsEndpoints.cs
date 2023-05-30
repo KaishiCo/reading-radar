@@ -12,7 +12,9 @@ public static class RadarsEndpoints
     {
         app.MapGet("/api/radars", ListRadars);
         app.MapPut("/api/radars/{bookId:guid}", UpsertRadar);
+        app.MapDelete("/api/radars/{bookId:guid}", DeleteRadar);
     }
+
 
     private static async Task<IResult> ListRadars(ISender sender)
     {
@@ -33,5 +35,14 @@ public static class RadarsEndpoints
         return result.Match(
             radar => Results.Ok(radar.AsResponse()),
             error => error.AsHttpResult());
+    }
+
+    private static async Task<IResult> DeleteRadar(Guid bookId, ISender sender)
+    {
+        var deleted = await sender.Send(new DeleteRadarCommand(bookId));
+
+        return deleted
+            ? Results.Ok()
+            : Results.NotFound();
     }
 }
