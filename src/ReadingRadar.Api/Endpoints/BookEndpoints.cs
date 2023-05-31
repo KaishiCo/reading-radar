@@ -31,13 +31,13 @@ public static class BookEndpoints
         var result = await sender.Send(command);
 
         return result.Match(
-            book => Results.Ok(book),
+            book => Results.Ok(book.AsResponse()),
             error => error.AsHttpResult());
     }
 
     private static async Task<IResult> ListBooks(ISender sender)
     {
         var items = await sender.Send(new ListBooksQuery());
-        return Results.Ok(items);
+        return Results.Ok(items.Select(b => b.AsResponse()));
     }
 }

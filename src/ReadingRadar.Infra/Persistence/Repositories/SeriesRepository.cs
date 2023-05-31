@@ -44,8 +44,23 @@ internal sealed class SeriesRepository : ISeriesRepository
         """);
     }
 
-    public Task<Series?> GetByNameAsync(string name)
+    public async Task<Series?> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        using var connection = await _connectionFactory.CreateConnectionAsync();
+
+        var series = await connection.QueryFirstOrDefaultAsync<Series>("""
+            SELECT Name, LastUpdated FROM Series WHERE Id = @Id
+        """, new { Id = id });
+
+        if (series is not null)
+        {
+            var books = await connection.QueryAsync<Book>("""
+                SELECT * FROM Book WHERE SeriesId = @Id
+            """, new { Id = id });
+
+            series.Books.AddRange(books);
+        }
+
+        return series;
     }
 }

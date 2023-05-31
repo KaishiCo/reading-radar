@@ -11,7 +11,8 @@ public static class SeriesEndpoints
     public static void MapSeriesEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapPost("/api/series", CreateSeries);
-        app.MapGet("/api/series", ListSeries);
+        app.MapGet("/api/series", GetSeries);
+        app.MapGet("/api/series/{id:guid}", GetSeriesById);
     }
 
     private static async Task<IResult> CreateSeries(CreateSeriesRequest request, ISender sender)
@@ -23,9 +24,17 @@ public static class SeriesEndpoints
             error => error.AsHttpResult());
     }
 
-    private static async Task<IResult> ListSeries(ISender sender)
+    private static async Task<IResult> GetSeries(ISender sender)
     {
         var items = await sender.Send(new ListSeriesQuery());
-        return Results.Ok(items);
+        return Results.Ok(items.AsSeriesResponses());
+    }
+
+    private static async Task<IResult> GetSeriesById(Guid id, ISender sender)
+    {
+        var series = await sender.Send(new GetSeriesQuery(id));
+        return series is not null
+            ? Results.Ok(series.AsSeriesWithBooksResponse())
+            : Results.NotFound();
     }
 }

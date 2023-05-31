@@ -1,5 +1,6 @@
 using ReadingRadar.Contracts.Books;
 using ReadingRadar.Contracts.Radars;
+using ReadingRadar.Contracts.Series;
 using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Api.Mapping;
@@ -34,4 +35,13 @@ public static class DomainToContractMapping
 
     public static GetRadarsResponse AsRadarsResponse(this IEnumerable<Radar> radars) =>
         new(radars.Select(r => r.AsRadarResponse()));
+
+    public static GetSeriesResponse AsSeriesResponse(this Series series) =>
+        new(series.Id, series.Name, series.LastUpdated);
+
+    public static GetSeriesResponses AsSeriesResponses(this IEnumerable<Series> series) =>
+        new(series.Select(s => s.AsSeriesResponse()));
+
+    public static GetSeriesWithBooksResponse AsSeriesWithBooksResponse(this Series series) =>
+        new(series.Name, series.LastUpdated, series.Books.Select(b => b.AsResponse()));
 }

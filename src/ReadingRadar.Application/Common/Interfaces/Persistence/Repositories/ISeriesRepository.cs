@@ -6,6 +6,6 @@ public interface ISeriesRepository
 {
     Task<bool> CreateAsync(Series series);
     Task<IEnumerable<Series>> GetAllAsync();
-    Task<Series?> GetByNameAsync(string name);
+    Task<Series?> GetByIdAsync(Guid id);
     Task<bool> ExistsAsync(string name);
 }

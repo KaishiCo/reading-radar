@@ -14,4 +14,5 @@ public class Book
     public string? ImageLink { get; set; }
     public DateTime? PublishDate { get; set; }
     public Guid? SeriesId { get; set; }
+    public Series? Series { get; set; }
 }

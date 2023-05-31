@@ -15,6 +15,13 @@ public class DbInitializer : IDbInitializer
         using var connection = await _connectionFactory.CreateConnectionAsync();
 
         await connection.ExecuteAsync("""
+            CREATE TABLE IF NOT EXISTS Series(
+                Id UUID PRIMARY KEY,
+                Name VARCHAR(255) NOT NULL,
+                LastUpdated DATE NOT NULL)
+        """);
+
+        await connection.ExecuteAsync("""
             CREATE TABLE IF NOT EXISTS Book(
                 Id UUID PRIMARY KEY,
                 Title VARCHAR(255) NOT NULL,
@@ -25,7 +32,8 @@ public class DbInitializer : IDbInitializer
                 Chapters INT,
                 ImageLink VARCHAR(255),
                 PublishDate DATE,
-                SeriesId UUID)
+                SeriesId UUID,
+                FOREIGN KEY (SeriesId) REFERENCES Series(Id))
         """);
 
         await connection.ExecuteAsync("""
@@ -36,13 +44,6 @@ public class DbInitializer : IDbInitializer
                 BookId UUID NOT NULL,
                 CompletionDate DATE,
                 FOREIGN KEY (BookId) REFERENCES Book(Id))
-        """);
-
-        await connection.ExecuteAsync("""
-            CREATE TABLE IF NOT EXISTS Series(
-                Id UUID PRIMARY KEY,
-                Name VARCHAR(255) NOT NULL,
-                LastUpdated DATE NOT NULL)
         """);
     }
 }
