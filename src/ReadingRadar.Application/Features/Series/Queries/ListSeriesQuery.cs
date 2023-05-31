@@ -3,4 +3,4 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.Queries;
 
-public record ListBooksQuery : IRequest<IEnumerable<Book>>;
+public record ListSeriesQuery() : IRequest<IEnumerable<Series>>;

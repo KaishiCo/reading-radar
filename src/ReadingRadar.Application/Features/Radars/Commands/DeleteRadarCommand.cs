@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace ReadingRadar.Application.Features.Radars.Commands;
+namespace ReadingRadar.Application.Features.Commands;
 
 public record DeleteRadarCommand(
     Guid BookId

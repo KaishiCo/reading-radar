@@ -2,11 +2,10 @@ using MediatR;
 using OneOf;
 using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 using ReadingRadar.Application.Errors;
-using ReadingRadar.Application.Features.Radars.Commands;
 using ReadingRadar.Domain.Enums;
 using ReadingRadar.Domain.Models;
 
-namespace ReadingRadar.Application.Features.BookStatuses.Commands;
+namespace ReadingRadar.Application.Features.Commands;
 
 public class UpsertRadarCommandHandler : IRequestHandler<UpsertRadarCommand, OneOf<Radar, IError>>
 {

@@ -1,7 +1,7 @@
 using FluentValidation;
 using ReadingRadar.Domain.Enums;
 
-namespace ReadingRadar.Application.Features.Radars.Commands;
+namespace ReadingRadar.Application.Features.Commands;
 
 public class UpsertRadarCommandValidator : AbstractValidator<UpsertRadarCommand>
 {

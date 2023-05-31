@@ -3,7 +3,7 @@ using OneOf;
 using ReadingRadar.Application.Errors;
 using ReadingRadar.Domain.Models;
 
-namespace ReadingRadar.Application.Features.Books.Commands;
+namespace ReadingRadar.Application.Features.Commands;
 
 public record CreateBookCommand(
     string Title,

@@ -1,7 +1,7 @@
 using MediatR;
 using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 
-namespace ReadingRadar.Application.Features.Radars.Commands;
+namespace ReadingRadar.Application.Features.Commands;
 
 public class DeleteRadarCommandHandler : IRequestHandler<DeleteRadarCommand, bool>
 {

@@ -2,7 +2,7 @@ using MediatR;
 using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 using ReadingRadar.Domain.Models;
 
-namespace ReadingRadar.Application.Features.Books.Queries;
+namespace ReadingRadar.Application.Features.Queries;
 
 public class ListBooksQueryHandler : IRequestHandler<ListBooksQuery, IEnumerable<Book>>
 {
