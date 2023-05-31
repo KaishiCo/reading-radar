@@ -7,7 +7,7 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.Commands;
 
-public class CreateSeriesCommandHandler : IRequestHandler<CreateSeriesCommand, OneOf<Series, IError>>
+internal sealed class CreateSeriesCommandHandler : IRequestHandler<CreateSeriesCommand, OneOf<Series, IError>>
 {
     private readonly ISeriesRepository _seriesRepo;
     private readonly IDateTimeProvider _dateTimeProvider;

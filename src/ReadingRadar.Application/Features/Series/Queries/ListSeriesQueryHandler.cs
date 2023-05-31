@@ -4,7 +4,7 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.Queries;
 
-public class ListSeriesQueryHandler : IRequestHandler<ListSeriesQuery, IEnumerable<Series>>
+internal sealed class ListSeriesQueryHandler : IRequestHandler<ListSeriesQuery, IEnumerable<Series>>
 {
     private readonly ISeriesRepository _seriesRepo;
 

@@ -3,7 +3,7 @@ using ReadingRadar.Domain.Enums;
 
 namespace ReadingRadar.Application.Features.Commands;
 
-public class UpsertRadarCommandValidator : AbstractValidator<UpsertRadarCommand>
+internal sealed class UpsertRadarCommandValidator : AbstractValidator<UpsertRadarCommand>
 {
     public UpsertRadarCommandValidator()
     {

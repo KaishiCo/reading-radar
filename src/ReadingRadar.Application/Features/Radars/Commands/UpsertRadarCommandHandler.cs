@@ -7,7 +7,7 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.Commands;
 
-public class UpsertRadarCommandHandler : IRequestHandler<UpsertRadarCommand, OneOf<Radar, IError>>
+internal sealed class UpsertRadarCommandHandler : IRequestHandler<UpsertRadarCommand, OneOf<Radar, IError>>
 {
     private readonly IRadarRepository _radarRepo;
     private readonly IBookRepository _bookRepo;

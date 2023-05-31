@@ -4,7 +4,7 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.Queries;
 
-public class ListRadarsQueryHandler : IRequestHandler<ListRadarsQuery, IEnumerable<Radar>>
+internal sealed class ListRadarsQueryHandler : IRequestHandler<ListRadarsQuery, IEnumerable<Radar>>
 {
     private readonly IRadarRepository _radarRepo;
 

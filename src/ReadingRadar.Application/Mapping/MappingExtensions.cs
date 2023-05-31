@@ -3,7 +3,7 @@ using ReadingRadar.Application.Errors;
 
 namespace ReadingRadar.Application.Mapping;
 
-public static class MappingExtensions
+internal static class MappingExtensions
 {
     public static ValidationError AsValidationError(this IEnumerable<ValidationFailure> failures)
     {

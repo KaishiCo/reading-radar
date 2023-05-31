@@ -3,7 +3,7 @@ using ReadingRadar.Domain.Enums;
 
 namespace ReadingRadar.Application.Features.Commands;
 
-public class CreateBookCommandValidator : AbstractValidator<CreateBookCommand>
+internal sealed class CreateBookCommandValidator : AbstractValidator<CreateBookCommand>
 {
     public CreateBookCommandValidator()
     {

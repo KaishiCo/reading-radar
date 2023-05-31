@@ -3,7 +3,7 @@ using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
 
 namespace ReadingRadar.Application.Features.Commands;
 
-public class DeleteRadarCommandHandler : IRequestHandler<DeleteRadarCommand, bool>
+internal sealed class DeleteRadarCommandHandler : IRequestHandler<DeleteRadarCommand, bool>
 {
     private readonly IRadarRepository _radarRepo;
 

@@ -7,7 +7,7 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.Commands;
 
-public class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, OneOf<Book, IError>>
+internal sealed class CreateBookCommandHandler : IRequestHandler<CreateBookCommand, OneOf<Book, IError>>
 {
     private readonly IBookRepository _bookRepository;
 

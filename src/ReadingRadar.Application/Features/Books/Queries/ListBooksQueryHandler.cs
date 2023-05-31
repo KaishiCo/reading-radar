@@ -4,7 +4,7 @@ using ReadingRadar.Domain.Models;
 
 namespace ReadingRadar.Application.Features.Queries;
 
-public class ListBooksQueryHandler : IRequestHandler<ListBooksQuery, IEnumerable<Book>>
+internal sealed class ListBooksQueryHandler : IRequestHandler<ListBooksQuery, IEnumerable<Book>>
 {
     private readonly IBookRepository _bookRepository;
 
