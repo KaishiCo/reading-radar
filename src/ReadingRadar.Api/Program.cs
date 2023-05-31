@@ -7,7 +7,7 @@ using ReadingRadar.Infra;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddPresentation()
+    .AddPresentation(builder.Host)
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
