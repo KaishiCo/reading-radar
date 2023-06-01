@@ -19,6 +19,7 @@ public static class BookEndpoints
         var command = new CreateBookCommand(
             request.Title,
             request.Author,
+            request.Language,
             request.MediaType,
             request.Description,
             request.Pages,

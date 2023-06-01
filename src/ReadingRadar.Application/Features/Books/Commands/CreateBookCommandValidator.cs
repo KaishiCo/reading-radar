@@ -13,6 +13,12 @@ internal sealed class CreateBookCommandValidator : AbstractValidator<CreateBookC
             .MaximumLength(100)
             .WithMessage("Title must not exceed 100 characters.");
 
+        RuleFor(x => x.Language)
+            .NotEmpty()
+            .WithMessage("Language is required.")
+            .MaximumLength(3)
+            .WithMessage("Language must not exceed 100 characters.");
+
         RuleFor(x => x.Author)
             .NotEmpty()
             .WithMessage("Author is required.")

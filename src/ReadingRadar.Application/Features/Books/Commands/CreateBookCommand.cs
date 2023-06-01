@@ -8,6 +8,7 @@ namespace ReadingRadar.Application.Features.Commands;
 public record CreateBookCommand(
     string Title,
     string Author,
+    string Language,
     int MediaType,
     string? Description,
     int? Pages,

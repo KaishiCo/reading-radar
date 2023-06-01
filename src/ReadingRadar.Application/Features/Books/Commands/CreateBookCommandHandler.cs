@@ -23,6 +23,7 @@ internal sealed class CreateBookCommandHandler : IRequestHandler<CreateBookComma
             Id = Guid.NewGuid(),
             Title = request.Title,
             Author = request.Author,
+            Language = request.Language,
             MediaType = (MediaType)request.MediaType,
             Description = request.Description,
             Pages = request.Pages,

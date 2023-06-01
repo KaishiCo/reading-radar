@@ -12,6 +12,7 @@ public static class DomainToContractMapping
             book.Id,
             book.Title,
             book.Author,
+            book.Language,
             (int)book.MediaType,
             book.Description,
             book.Pages,

@@ -15,8 +15,8 @@ internal sealed class BookRepository : IBookRepository
     public async Task<bool> CreateAsync(Book book)
     {
         const string sql = """
-            INSERT INTO Book (Id, Title, Author, MediaType, Description, Pages, Chapters, ImageLink, PublishDate, SeriesId)
-            VALUES (@Id, @Title, @Author, @MediaType, @Description, @Pages, @Chapters, @ImageLink, @PublishDate, @SeriesId)    
+            INSERT INTO Book (Id, Title, Author, Language, MediaType, Description, Pages, Chapters, ImageLink, PublishDate, SeriesId)
+            VALUES (@Id, @Title, @Author, @Language, @MediaType, @Description, @Pages, @Chapters, @ImageLink, @PublishDate, @SeriesId)    
         """;
 
         using var connection = await _connectionFactory.CreateConnectionAsync();

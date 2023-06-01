@@ -56,6 +56,7 @@ internal sealed class DataSeedService : IDataSeedService
             .RuleFor(b => b.Id, _ => Guid.NewGuid())
             .RuleFor(b => b.Title, f => f.Lorem.Sentence())
             .RuleFor(b => b.Author, f => f.Name.FullName())
+            .RuleFor(b => b.Language, f => f.PickRandom(new List<string>{"ja", "en"}))
             .RuleFor(b => b.MediaType, f => f.PickRandom<MediaType>())
             .RuleFor(b => b.Description, f => f.Lorem.Paragraph())
             .RuleFor(b => b.Pages, f => f.Random.Int(0, 1000))
