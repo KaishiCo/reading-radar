@@ -17,6 +17,7 @@ public static class DependencyInjection
             .AddSingleton<IDataSeedService, DataSeedService>()
             .AddSingleton<IBookRepository, BookRepository>()
             .AddSingleton<IDateTimeProvider, DateTimeProvider>()
+            .AddSingleton<IActivityRepository, ActivityRepository>()
             .AddSingleton<ISeriesRepository, SeriesRepository>()
             .AddSingleton<IRadarRepository, RadarRepository>()
             .AddSingleton<IDbConnectionFactory, PgsqlConnectionFactory>(_ =>

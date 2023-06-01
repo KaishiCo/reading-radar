@@ -1,7 +1,10 @@
+using MassTransit;
 using MediatR;
 using OneOf;
 using ReadingRadar.Application.Common.Interfaces.Persistence.Repositories;
+using ReadingRadar.Application.Common.Interfaces.Services;
 using ReadingRadar.Application.Errors;
+using ReadingRadar.Application.Features.Events;
 using ReadingRadar.Domain.Enums;
 using ReadingRadar.Domain.Models;
 
@@ -11,11 +14,15 @@ internal sealed class UpsertRadarCommandHandler : IRequestHandler<UpsertRadarCom
 {
     private readonly IRadarRepository _radarRepo;
     private readonly IBookRepository _bookRepo;
+    private readonly IPublishEndpoint _bus;
+    private readonly IDateTimeProvider _dateTimeProvider;
 
-    public UpsertRadarCommandHandler(IRadarRepository radarRepo, IBookRepository bookRepo)
+    public UpsertRadarCommandHandler(IRadarRepository radarRepo, IBookRepository bookRepo, IPublishEndpoint bus, IDateTimeProvider dateTimeProvider)
     {
         _radarRepo = radarRepo;
         _bookRepo = bookRepo;
+        _bus = bus;
+        _dateTimeProvider = dateTimeProvider;
     }
 
     public async Task<OneOf<Radar, IError>> Handle(UpsertRadarCommand request, CancellationToken cancellationToken)
@@ -32,7 +39,18 @@ internal sealed class UpsertRadarCommandHandler : IRequestHandler<UpsertRadarCom
             ChaptersCompleted = request.ChaptersCompleted
         };
 
-        await _radarRepo.UpsertAsync(radar);
+        var (_, oldChaptersCompleted) = await _radarRepo.UpsertAsync(radar);
+
+        await _bus.Publish(new RadarUpsertedEvent
+        {
+            Id = radar.Id,
+            Status = radar.Status,
+            BookId = radar.BookId,
+            ChapterStart = oldChaptersCompleted,
+            ChapterEnd = radar.ChaptersCompleted,
+            Date = _dateTimeProvider.UtcNow
+        }, cancellationToken);
+
         return radar;
     }
 }

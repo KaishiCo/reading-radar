@@ -24,22 +24,23 @@ internal sealed class RadarRepository : IRadarRepository
         return result > 0;
     }
 
-    public async Task<bool> UpsertAsync(Radar radar)
+    public async Task<(bool created, int oldChaptersCompleted)> UpsertAsync(Radar radar)
     {
-        if (!await ExistsAsync(radar.BookId))
-            return await CreateAsync(radar);
+        var existingRadar = await GetByBookIdAsync(radar.BookId);
+        if (existingRadar is null)
+            return (await CreateAsync(radar), 0);
 
         using var connection = await _connectionFactory.CreateConnectionAsync();
 
-        var result = await connection.ExecuteAsync("""
+        var created = await connection.ExecuteAsync("""
             UPDATE Radar SET
                 Status = @Status,
                 ChaptersCompleted = @ChaptersCompleted,
                 CompletionDate = @CompletionDate
             WHERE BookId = @BookId
-        """, radar);
+        """, radar) > 0;
 
-        return result > 0;
+        return (created, existingRadar.ChaptersCompleted);
     }
 
     public async Task<IEnumerable<Radar>> GetAllAsync()

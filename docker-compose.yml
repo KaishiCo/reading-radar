@@ -1,5 +1,8 @@
 version: '3.9'
 
+volumes:
+  db-dev:
+
 services:
   db:
     image: postgres:15.3-alpine3.18
@@ -12,5 +15,11 @@ services:
     restart: always
     volumes:
       - db-dev:/var/lib/postgresql/data
-volumes:
-  db-dev:
+  rabbit-mq:
+    image: rabbitmq:3.10.20-management
+    ports:
+      - 9002:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest

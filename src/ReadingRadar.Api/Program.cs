@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddPresentation(builder.Host)
-    .AddApplication()
+    .AddApplication(builder.Configuration)
     .AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
@@ -17,6 +17,7 @@ app.MapHealthChecks("/_health");
 app.MapBookEndpoints();
 app.MapBookStatusesEndpoints();
 app.MapSeriesEndpoints();
+app.MapActivitiesEndpoints();
 
 var dbInitializer = app.Services.GetRequiredService<IDbInitializer>();
 await dbInitializer.InitializeAsync(args.Contains("--seed"));
