@@ -58,5 +58,15 @@ public class DbInitializer : IDbInitializer
                 CompletionDate DATE,
                 FOREIGN KEY (BookId) REFERENCES Book(Id))
         """);
+
+        await connection.ExecuteAsync("""
+            CREATE TABLE IF NOT EXISTS Activity(
+                Id UUID PRIMARY KEY,
+                Status INT NOT NULL,
+                Amount INT,
+                BookId UUID NOT NULL,
+                Date TIMESTAMP NOT NULL,
+                FOREIGN KEY (BookId) REFERENCES Book(Id))
+        """);
     }
 }
