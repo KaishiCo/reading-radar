@@ -1,4 +1,5 @@
 using MediatR;
+using ReadingRadar.Api.Mapping;
 using ReadingRadar.Application.Features.Queries;
 
 namespace ReadingRadar.Api.Endpoints;
@@ -13,6 +14,6 @@ public static class ActivitiesEndpoints
     private static async Task<IResult> GetActivities(ISender sender)
     {
         var items = await sender.Send(new GetActivitiesQuery());
-        return Results.Ok(items);
+        return Results.Ok(items.AsActivitiesResponse());
     }
 }
