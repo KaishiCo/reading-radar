@@ -19,6 +19,6 @@ app.MapBookStatusesEndpoints();
 app.MapSeriesEndpoints();
 
 var dbInitializer = app.Services.GetRequiredService<IDbInitializer>();
-await dbInitializer.InitializeAsync();
+await dbInitializer.InitializeAsync(args.Contains("--seed"));
 
 app.Run();

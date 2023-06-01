@@ -1,16 +1,29 @@
 using Dapper;
 using ReadingRadar.Application.Common.Interfaces.Persistence;
+using ReadingRadar.Application.Common.Interfaces.Services;
 
 namespace ReadingRadar.Infra.Persistence;
 
 public class DbInitializer : IDbInitializer
 {
     private readonly IDbConnectionFactory _connectionFactory;
+    private readonly IDataSeedService _dataSeedService;
 
-    public DbInitializer(IDbConnectionFactory connectionFactory) =>
+    public DbInitializer(IDbConnectionFactory connectionFactory, IDataSeedService dataSeedService)
+    {
         _connectionFactory = connectionFactory;
+        _dataSeedService = dataSeedService;
+    }
 
-    public async Task InitializeAsync()
+    public async Task InitializeAsync(bool seed)
+    {
+        await CreateTables();
+
+        if (seed)
+            await _dataSeedService.SeedAsync();
+    }
+
+    private async Task CreateTables()
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
 

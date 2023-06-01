@@ -14,6 +14,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
         services.AddSingleton<IDbInitializer, DbInitializer>()
+            .AddSingleton<IDataSeedService, DataSeedService>()
             .AddSingleton<IBookRepository, BookRepository>()
             .AddSingleton<IDateTimeProvider, DateTimeProvider>()
             .AddSingleton<ISeriesRepository, SeriesRepository>()
