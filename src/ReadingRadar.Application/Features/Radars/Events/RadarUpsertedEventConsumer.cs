@@ -19,7 +19,7 @@ internal sealed class RadarUpsertedEventConsumer : IConsumer<RadarUpsertedEvent>
 
     public async Task Consume(ConsumeContext<RadarUpsertedEvent> context)
     {
-        var activity = new Activity
+        var newActivity = new Activity
         {
             Id = Guid.NewGuid(),
             Status = context.Message.Status,
@@ -27,19 +27,22 @@ internal sealed class RadarUpsertedEventConsumer : IConsumer<RadarUpsertedEvent>
             BookId = context.Message.BookId,
             Date = context.Message.Date
         };
-        // make sure Date is not older than an hour
+
         var latestActivity = await _activityRepo.GetMostRecentAsync(context.Message.BookId);
         if (latestActivity?.Status == Status.Reading
-            && activity.Status == Status.Reading
+            && newActivity.Status == Status.Reading
             && latestActivity.Date > _dateTimeProvider.UtcNow.AddHours(-1)
-            && activity.Amount is not null)
+            && newActivity.Amount.GetValueOrDefault() - latestActivity.Amount.GetValueOrDefault() > 0)
         {
-            activity.Amount += latestActivity.Amount;
-            await _activityRepo.UpdateAsync(activity, latestActivity.Id);
+            newActivity.Amount += latestActivity.Amount;
+            await _activityRepo.UpdateAsync(newActivity, latestActivity.Id);
             return;
         }
 
-        await _activityRepo.CreateAsync(activity);
+        if (newActivity.Status != Status.Reading && latestActivity?.Status == newActivity.Status)
+            return;
+
+        await _activityRepo.CreateAsync(newActivity);
     }
 
     private static int? GetAmount(Status status, int chapterEnd, int chapterStart)

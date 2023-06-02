@@ -16,5 +16,4 @@ public static class DependencyInjection
             logger.ReadFrom.Configuration(context.Configuration));
         return services;
     }
-
 }
