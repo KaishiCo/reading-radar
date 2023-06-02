@@ -33,4 +33,32 @@ public class ActivityRepository : IActivityRepository
             FROM Activity
         """);
     }
+
+    public async Task<Activity?> GetMostRecentAsync(Guid bookId)
+    {
+        using var connection = await _connectionFactory.CreateConnectionAsync();
+
+        return await connection.QuerySingleOrDefaultAsync<Activity>("""
+            SELECT Id, Status, Amount, Date
+            FROM Activity
+            WHERE BookId = @BookId
+            ORDER BY Date DESC
+            LIMIT 1;
+        """, new { BookId = bookId });
+    }
+
+    public async Task<bool> UpdateAsync(Activity activity, Guid id)
+    {
+        using var connection = await _connectionFactory.CreateConnectionAsync();
+
+        var result = await connection.ExecuteAsync(@"
+            UPDATE Activity
+            SET Status = @Status,
+                Amount = @Amount,
+                Date = @Date
+            WHERE Id = @Id
+        ", new { activity.Status, activity.Amount, activity.Date, Id = id });
+
+        return result > 0;
+    }
 }

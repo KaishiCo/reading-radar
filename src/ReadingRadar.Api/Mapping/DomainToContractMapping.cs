@@ -1,3 +1,4 @@
+using ReadingRadar.Contracts.Activities;
 using ReadingRadar.Contracts.Books;
 using ReadingRadar.Contracts.Radars;
 using ReadingRadar.Contracts.Series;
@@ -45,4 +46,15 @@ public static class DomainToContractMapping
 
     public static GetSeriesWithBooksResponse AsSeriesWithBooksResponse(this Series series) =>
         new(series.Name, series.LastUpdated, series.Books.Select(b => b.AsResponse()));
+
+    public static GetActivityResponse AsActivityResponse(this Activity activity) =>
+        new(
+            activity.Id,
+            (int)activity.Status,
+            activity.Amount,
+            activity.BookId,
+            activity.Date);
+
+    public static GetActivitiesResponse AsActivitiesResponse(this IEnumerable<Activity> activities) =>
+        new(activities.Select(a => a.AsActivityResponse()));
 }

@@ -15,7 +15,6 @@ public static class RadarsEndpoints
         app.MapDelete("/api/radars/{bookId:guid}", DeleteRadar);
     }
 
-
     private static async Task<IResult> ListRadars(ISender sender)
     {
         var items = await sender.Send(new ListRadarsQuery());
